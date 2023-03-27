@@ -12,5 +12,5 @@ import chat
 if __name__ == '__main__':
     chat_gpt = chat.Chat(api_key_path='/home/liangrui/openai/openai.key')
     while True:
-        prompt = input('>>> ')
+        prompt = input('You: ')
         chat_gpt.ask(prompt)

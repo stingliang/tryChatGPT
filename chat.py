@@ -31,13 +31,15 @@ class Chat:
     def set_credentials(self):
         openai.api_key_path = self.api_key_path
 
-    def show_conversation(self, msg_list):
+    def show_conversation(self, msg_list) -> str:
         """
         展示对话
         :param msg_list:
         :return:
         """
-        print(f'AI: {msg_list[-1]["content"]}(token cost: {self.token})')
+        response = f'{msg_list[-1]["content"]}(token cost: {self.token})'
+        print(f'AI: {response}')
+        return response
 
     def ask(self, prompt):
         """
@@ -52,4 +54,4 @@ class Chat:
         self.token += int(response['usage']['total_tokens'])
         # 下面这一步是把chatGPT的回答也添加到对话列表中，这样下一次问问题的时候就能形成上下文了
         self.conversation_list.append({'role': 'assistant', 'content': answer})
-        self.show_conversation(self.conversation_list)
+        return self.show_conversation(self.conversation_list)
